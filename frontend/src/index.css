@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 96%;
+
+    --card: 217 33% 14%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 217 33% 14%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 217 33% 16%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 22%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.5rem;
+
+    /* Method colors */
+    --method-get: 142 71% 45%;
+    --method-post: 217 91% 60%;
+    --method-put: 38 92% 50%;
+    --method-delete: 0 84% 60%;
+
+    /* Surfaces */
+    --surface-0: 222 47% 7%;
+    --surface-1: 222 47% 11%;
+    --surface-2: 217 33% 14%;
+    --surface-3: 217 33% 18%;
+
+    /* Code */
+    --code-bg: 222 47% 7%;
+    --code-border: 217 33% 18%;
+    --code-string: 142 71% 55%;
+    --code-key: 199 89% 58%;
+    --code-number: 38 92% 60%;
+    --code-null: 0 84% 65%;
+    --code-boolean: 280 68% 65%;
+
+    /* Glow */
+    --glow-primary: 199 89% 48%;
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 215 20% 55%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 217 33% 14%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px -4px hsl(var(--glow-primary) / 0.3);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+}
