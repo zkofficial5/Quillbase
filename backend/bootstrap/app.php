@@ -20,6 +20,51 @@ return Application::configure(basePath: dirname(__DIR__))
             'api/*',
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
-    })->create();
+   ->withExceptions(function (Exceptions $exceptions): void {
+    $exceptions->render(function (\Throwable $e, $request) {
+        if ($request->is('api/*')) {
+            $status = 500;
+
+            if ($e instanceof \Illuminate\Validation\ValidationException) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validation failed.',
+                    'errors'  => $e->errors(),
+                ], 422);
+            }
+
+            if ($e instanceof \Illuminate\Auth\AuthenticationException) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthenticated. Please login first.',
+                ], 401);
+            }
+
+            if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Resource not found.',
+                ], 404);
+            }
+
+            if ($e instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Method not allowed.',
+                ], 405);
+            }
+
+            if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Record not found.',
+                ], 404);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Server error. Please try again later.',
+            ], $status);
+        }
+    });
+})->create();

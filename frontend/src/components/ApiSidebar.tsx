@@ -48,7 +48,7 @@ export function ApiSidebar({ selectedId, onSelect }: ApiSidebarProps) {
           </div>
           <div>
             <h1 className="text-sm font-bold text-foreground leading-none">
-              Acme API
+              Quillbase API
             </h1>
             <p className="text-[10px] text-muted-foreground mt-0.5">v1.0.0</p>
           </div>
